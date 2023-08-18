@@ -1,4 +1,4 @@
-namespace BookTrekkerWeb.Models
+namespace BookTrekker.Models
 {
     public class ErrorViewModel
     {

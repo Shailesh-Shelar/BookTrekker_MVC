@@ -1,4 +1,4 @@
-﻿using BookTrekkerWeb.Models;
+﻿using BookTrekker.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

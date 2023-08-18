@@ -1,4 +1,4 @@
-using BookTrekkerWeb.Data;
+using BookTrekker.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

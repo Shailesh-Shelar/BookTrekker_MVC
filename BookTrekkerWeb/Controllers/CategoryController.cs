@@ -1,6 +1,6 @@
-﻿using BookTrekkerWeb.Data;
+﻿using BookTrekker.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
-using BookTrekkerWeb.Models;
+using BookTrekker.Models;
 
 namespace BookTrekkerWeb.Controllers
 {

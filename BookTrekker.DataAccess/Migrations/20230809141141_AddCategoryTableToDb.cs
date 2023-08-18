@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BookTrekkerWeb.Migrations
+namespace BookTrekker.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryTableToDb : Migration
