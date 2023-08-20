@@ -1,19 +1,21 @@
 ﻿using BookTrekker.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using BookTrekker.Models;
+using BookTrekker.DataAccess.Repository;
+using BookTrekker.DataAccess.Repository.IRepository;
 
 namespace BookTrekkerWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly ICategoryRepository _categoryRepo;
+        public CategoryController(ICategoryRepository db)
         {
-            _db = db;
+            _categoryRepo = db;
         }
         public IActionResult Index()
         {
-         List<Category>objCategoryList  =_db.Categories.ToList();
+            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -32,8 +34,8 @@ namespace BookTrekkerWeb.Controllers
             }*/
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _categoryRepo.Add(obj);
+                _categoryRepo.Save();
                 TempData["Success"] = "Category Created Successfully";
                 return RedirectToAction("Index", "Category");
             }
@@ -48,7 +50,7 @@ namespace BookTrekkerWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.FirstOrDefault(c => c.Id == id);
+            Category? categoryFromDb = _categoryRepo.Get(c => c.Id == id);
             if(categoryFromDb == null)
             {
                 return NotFound();
@@ -61,8 +63,8 @@ namespace BookTrekkerWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _categoryRepo.Update(obj);
+                _categoryRepo.Save();
                 TempData["Success"] = "Category Edited Successfully";
                 return RedirectToAction("Index", "Category");
             }
@@ -75,7 +77,7 @@ namespace BookTrekkerWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.FirstOrDefault(c => c.Id == id);
+            Category? categoryFromDb = _categoryRepo.Get(c => c.Id == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -86,13 +88,13 @@ namespace BookTrekkerWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? categoryFromDb = _db.Categories.FirstOrDefault(c=> c.Id == id);
-            if(categoryFromDb == null)
+            Category? categoryFromDb = _categoryRepo.Get(c => c.Id == id);
+            if (categoryFromDb == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(categoryFromDb);
-            _db.SaveChanges();
+            _categoryRepo.Remove(categoryFromDb);
+            _categoryRepo.Save();
             TempData["Success"] = "Category Deleted Successfully";
             return RedirectToAction("Index", "Category");
         }
