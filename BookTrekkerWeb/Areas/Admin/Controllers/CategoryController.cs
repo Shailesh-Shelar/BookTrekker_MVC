@@ -4,8 +4,9 @@ using BookTrekker.Models;
 using BookTrekker.DataAccess.Repository;
 using BookTrekker.DataAccess.Repository.IRepository;
 
-namespace BookTrekkerWeb.Controllers
+namespace BookTrekkerWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
