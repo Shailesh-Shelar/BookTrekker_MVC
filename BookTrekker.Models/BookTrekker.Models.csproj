@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\PersonalPractice\BookTrekker\BookTrekker.Models\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\PersonalPractice\BookTrekker\BookTrekker.Models\.editorconfig" />
+  </ItemGroup>
+
 </Project>
