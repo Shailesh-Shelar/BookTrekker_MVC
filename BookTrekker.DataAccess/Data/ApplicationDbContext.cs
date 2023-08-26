@@ -35,7 +35,9 @@ namespace BookTrekker.DataAccess.Data
                    ListPrice = 999,
                    Price = 900,
                    Price50 = 850,
-                   Price100 = 800
+                   Price100 = 800,
+                   CategoryId = 1,
+                   ImageUrl=""
                },
                 new Product
                 {
@@ -47,7 +49,9 @@ namespace BookTrekker.DataAccess.Data
                     ListPrice = 400,
                     Price = 300,
                     Price50 = 250,
-                    Price100 = 200
+                    Price100 = 200,
+                    CategoryId = 1,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -59,7 +63,9 @@ namespace BookTrekker.DataAccess.Data
                     ListPrice = 550,
                     Price = 500,
                     Price50 = 400,
-                    Price100 = 350
+                    Price100 = 350,
+                    CategoryId = 2,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -71,7 +77,9 @@ namespace BookTrekker.DataAccess.Data
                     ListPrice = 700,
                     Price = 650,
                     Price50 = 600,
-                    Price100 = 550
+                    Price100 = 550,
+                    CategoryId = 1,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -83,7 +91,9 @@ namespace BookTrekker.DataAccess.Data
                     ListPrice = 300,
                     Price = 270,
                     Price50 = 250,
-                    Price100 = 200
+                    Price100 = 200,
+                    CategoryId = 2,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -95,7 +105,9 @@ namespace BookTrekker.DataAccess.Data
                     ListPrice = 250,
                     Price = 230,
                     Price50 = 220,
-                    Price100 = 200
+                    Price100 = 200,
+                    CategoryId = 1,
+                    ImageUrl = ""
                 });
         }
     }

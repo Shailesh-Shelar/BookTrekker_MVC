@@ -14,4 +14,8 @@
     <None Include="D:\PersonalPractice\BookTrekker\BookTrekker.Models\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+  </ItemGroup>
+
 </Project>
