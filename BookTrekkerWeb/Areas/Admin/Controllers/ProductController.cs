@@ -5,10 +5,14 @@ using BookTrekker.DataAccess.Repository;
 using BookTrekker.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BookTrekker.Models.ViewModels;
+using BookTrekker.Utility;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace BookTrekkerWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
