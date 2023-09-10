@@ -18,6 +18,10 @@ namespace BookTrekker.DataAccess.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        public DbSet<Company> Companies { get; set; }
+
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +33,23 @@ namespace BookTrekker.DataAccess.Data
 
                 );
 
+            modelBuilder.Entity<Company>().HasData(
+               new Company { Id = 1, Name = "Master Solutions", StreetAddress="Pune MH", City="Pune",State="MH",
+                   PostalCode="416204",PhoneNumber="456221485" },
+               new Company { Id = 2, Name = "Tech Soft", StreetAddress="Pimpri MH", City="Chinchwad",State="MH",
+                   PostalCode="411014",PhoneNumber="456221485" },
+               new Company
+               {
+                   Id = 3,
+                   Name = "Mind Technology",
+                   StreetAddress = "Mumbai MH",
+                   City = "Mumbai",
+                   State = "MH",
+                   PostalCode = "412101",
+                   PhoneNumber = "12345677"
+               }
+
+               );
             modelBuilder.Entity<Product>().HasData(
                new Product
                {
