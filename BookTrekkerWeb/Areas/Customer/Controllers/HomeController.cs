@@ -1,8 +1,10 @@
 ﻿using BookTrekker.DataAccess.Repository.IRepository;
 using BookTrekker.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace BookTrekkerWeb.Areas.Customer.Controllers
 {
@@ -26,10 +28,42 @@ namespace BookTrekkerWeb.Areas.Customer.Controllers
 
         public IActionResult Details(int productId)
         {
-            Product product = _unitOfWork.Product.Get(u=>u.Id== productId, includeProperties: "Category");
-            return View(product);
+            ShoppingCart Cart = new()
+            {
+                Product = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category"),
+                Count = 1,
+                ProductId = productId
+            };
+           
+            return View(Cart);
         }
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+           var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var UserId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.ApplicationUserId = UserId;
 
+            ShoppingCart cartfromDb = _unitOfWork.ShoppingCart.Get(u=>u.ApplicationUserId == UserId &&
+            u.ProductId ==shoppingCart.ProductId);
+
+            if(cartfromDb != null)
+            {
+                //shopping cart already exists
+                cartfromDb.Count += shoppingCart.Count;
+               _unitOfWork.ShoppingCart.Update(cartfromDb);
+            }
+            else
+            {
+                //add cart to DB
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
+            }
+            TempData["Success"] = "Cart Updated Successfully";
+            _unitOfWork.Save();
+          
+            return RedirectToAction("Index");
+        }
         public IActionResult Privacy()
         {
             return View();
